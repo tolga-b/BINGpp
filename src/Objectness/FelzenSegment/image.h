@@ -29,7 +29,7 @@ class image {
   /* create an image */
   image(const int width, const int height, const bool init = true);
 
-  /* delete an image */
+  /*	delete an image */
   ~image();
 
   /* init an image */
@@ -77,8 +77,8 @@ image<T>::image(const int width, const int height, const bool init) {
 
 template <class T>
 image<T>::~image() {
-  delete [] data; 
-  delete [] access;
+ 	delete [] data; 
+ 	delete [] access;
 }
 
 template <class T>

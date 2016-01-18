@@ -76,7 +76,7 @@ universe *segment_graph(int num_vertices, int num_edges, edge *edges,
   }
 
   // free up
-  delete threshold;
+ 	delete threshold;
   return u;
 }
 

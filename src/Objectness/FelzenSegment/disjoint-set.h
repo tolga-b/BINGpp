@@ -52,7 +52,7 @@ universe::universe(int elements) {
 }
   
 universe::~universe() {
-  delete [] elts;
+ 	delete [] elts;
 }
 
 int universe::find(int x) {

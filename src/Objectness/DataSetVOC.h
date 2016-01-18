@@ -1,5 +1,5 @@
 /************************************************************************/
-/* This source code is free for both academic and industry use.         */
+/* This source code is	free for both academic and industry use.         */
 /* Some important information for better using the source code could be */
 /* found in the project page: http://mmcheng.net/bing					*/
 /************************************************************************/

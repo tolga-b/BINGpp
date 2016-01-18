@@ -15,10 +15,10 @@ seg_engine::seg_engine(const objects::settings& in_settings)
 
 seg_engine::~seg_engine()
 {
-	if (source_img != NULL) delete source_img;
-	if (cvt_img != NULL) delete cvt_img;
-	if (idx_img != NULL) delete idx_img;
-	if (spixel_map != NULL) delete spixel_map;
+	if (source_img != NULL)	delete source_img;
+	if (cvt_img != NULL)	delete cvt_img;
+	if (idx_img != NULL)	delete idx_img;
+	if (spixel_map != NULL)	delete spixel_map;
 }
 
 void seg_engine::Perform_Segmentation(UChar4Image* in_img)

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Objectness.h"
 #include "CmShow.h"
+#include <cstdlib>
+#include <execinfo.h>
 
 #define Malloc(type,n) (type *)malloc((n)*sizeof(type))
 void print_null(const char *s) {}
@@ -17,6 +19,16 @@ const char* COLORs[CN] = {"'k'", "'b'", "'g'", "'r'", "'c'", "'m'", "'y'",
 //#define PRELOAD_IMGS   // Uncomment this line to remove counting times of image reading. Warning: much more memory is required
 
 // base for window size quantization, R orientation channels, and feature window size (_W, _W)
+void backtrace(){
+	void* tracePtrs[100];
+	int count = backtrace( tracePtrs, 100 );
+	char** funcNames = backtrace_symbols( tracePtrs, count );
+	for(int i = 0; i < count; i++)
+		std::cerr << funcNames[i] << "\n";
+	free(funcNames);
+	exit(-1);
+}
+
 Objectness::Objectness(DataSetVOC &voc, double base, int W, int NSS)
 	: _voc(voc)
 	, _base(base)
@@ -462,6 +474,7 @@ void Objectness::trainObjectness(int numDetPerSize)
 
 void Objectness::generateTrianData()
 {
+	//backtrace();
 	const int NUM_TRAIN = _voc.trainNum;
 	const int FILTER_SZ = _W*_W;
 	vector<vector<Mat> > xTrainP(NUM_TRAIN), xTrainN(NUM_TRAIN);
@@ -860,7 +873,6 @@ void Objectness::getObjBndBoxesForTests(vector<vector<Vec4i> > &_boxes, int numD
 // Get potential bounding boxes for all test images
 void Objectness::getObjBndBoxesForTestFast(vector<vector<Vec4i> > &_boxes, int numDetPerSize)
 {
-	Mat tmpMat;
 	//setColorSpace(HSV);
 	//trainObjectness(numDetPerSize);
 	loadTrainedModel();
@@ -901,7 +913,7 @@ void Objectness::getObjBndBoxesForTestFast(vector<vector<Vec4i> > &_boxes, int n
 		getObjBndBoxes(imread(format(_S(_voc.imgPathW), _S(_voc.trainSet[i]))), boxes[i], numDetPerSize);
 #else
 	{
-		tmpMat = imread(format(_S(_voc.imgPathW), _S(_voc.testSet[i])));
+		Mat tmpMat = imread(format(_S(_voc.imgPathW), _S(_voc.testSet[i])));
 		getObjBndBoxes(tmpMat, boxes[i], numDetPerSize);
 	 }
 #endif

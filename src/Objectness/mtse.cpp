@@ -246,8 +246,8 @@ void mtse(vector<Vec4i> &sp_boxes, ValStructVec<float, Vec4i> &init_boxes, const
     // non maximal suppression, return no more than 5000 proposals
     boxesNms(out_boxes, beta, 5000);
     
-    // release memory
-    delete[] areaS;
+    //	release memory
+   	delete[] areaS;
 }
 
 void mtse(vector<Vec4i> &sp_boxes, ValStructVec<float, Vec4i> &init_boxes, ValStructVec<float, Vec4i> &out_boxes, vecF thetas, const float beta, const bool combine)
@@ -398,7 +398,7 @@ void initGPU(int threadNum)
 	}
 }
 
-void releaseGPU(int threadNum)
+void	releaseGPU(int threadNum)
 {
 	for (int i = 0; i < threadNum; i++) {
 		delete gSLIC_engines[i];

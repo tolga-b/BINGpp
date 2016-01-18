@@ -76,9 +76,9 @@ image<rgb> *segment_image(image<rgb> *im, float sigma, float c, int min_size,
   image<float> *smooth_r = smooth(r, sigma);
   image<float> *smooth_g = smooth(g, sigma);
   image<float> *smooth_b = smooth(b, sigma);
-  delete r;
-  delete g;
-  delete b;
+ 	delete r;
+ 	delete g;
+ 	delete b;
  
   // build graph
   edge *edges = new edge[width*height*4];
@@ -114,9 +114,9 @@ image<rgb> *segment_image(image<rgb> *im, float sigma, float c, int min_size,
       }
     }
   }
-  delete smooth_r;
-  delete smooth_g;
-  delete smooth_b;
+ 	delete smooth_r;
+ 	delete smooth_g;
+ 	delete smooth_b;
 
   // segment
   universe *u = segment_graph(width*height, num, edges, c);
@@ -128,7 +128,7 @@ image<rgb> *segment_image(image<rgb> *im, float sigma, float c, int min_size,
     if ((a != b) && ((u->size(a) < min_size) || (u->size(b) < min_size)))
       u->join(a, b);
   }
-  delete [] edges;
+ 	delete [] edges;
   *num_ccs = u->num_sets();
 
   image<rgb> *output = new image<rgb>(width, height);
@@ -145,8 +145,8 @@ image<rgb> *segment_image(image<rgb> *im, float sigma, float c, int min_size,
     }
   }  
 
-  delete [] colors;  
-  delete u;
+ 	delete [] colors;  
+ 	delete u;
 
   return output;
 }

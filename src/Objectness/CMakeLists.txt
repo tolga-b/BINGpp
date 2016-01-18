@@ -35,7 +35,7 @@ if (${CMAKE_COMPILER_IS_GNUCXX})
   set(OPENMP_FLAG "-fopenmp -std=c++11 -ftree-vectorize")
 endif (${CMAKE_COMPILER_IS_GNUCXX})
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OPENMP_FLAG} -O0")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OPENMP_FLAG} -O3") # -O0 -pg
 
 set(SRC_FILES CmFile.cpp CmShow.cpp DataSetVOC.cpp FilterBING.cpp mtse.cpp Objectness.cpp stdafx.cpp)
 cuda_add_library(gSLIC_lib

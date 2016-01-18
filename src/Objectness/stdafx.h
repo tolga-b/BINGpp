@@ -125,7 +125,7 @@ Point const DIRECTION4[5] = {
 
 
 void initGPU(int threadNum);
-void releaseGPU(int threadNum);
+void	releaseGPU(int threadNum);
 void FelzenSegmentIndex(vector<Vec4i> &boxes, Mat &matIm, float c, int min_size);
 void FelzenSegmentIndex(vector<Vec4i> &boxes, Mat &matIm, float sigma, float c, int min_size);
 void mtse(vector<Vec4i> &sp_boxes, ValStructVec<float, Vec4i> &init_boxes, ValStructVec<float, Vec4i> &out_boxes, vecF thetas, const float beta, const bool combine);
