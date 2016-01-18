@@ -4,8 +4,7 @@
 Tested on Ubuntu 14.04 with CUDA 7.5.
 
 Currently has user specific directories in CMakeLists.txt of Objectness.
-Need to set OMP_NUM_THREADS to 1 in environmental variables before running (parallel is buggy atm)
-A commit is on the way to fix both these issues!
+A commit is on the way!
 
 To build:
 ```
