@@ -12,5 +12,4 @@ mkdir build
 cd build
 cmake ..
 make
-export OMP_NUM_THREADS=1
 ```
