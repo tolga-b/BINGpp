@@ -3,8 +3,8 @@ find_package(CUDA REQUIRED)
 include(FindCUDA)
 set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS} -std=c++11 -gencode arch=compute_30,code=sm_30)
 
-set(INC_DIRS ${BING++_SOURCE_DIR}/LibLinear ${BING++_SOURCE_DIR}/LibLinear/blas ${BING++_SOURCE_DIR}/../Lib /usr/local/cuda/include /home/tolgab/opencv-3.0.0/include ${BING++_SOURCE_DIR}/Objectness/gSLIC_Lib ${BING++_SOURCE_DIR}/Objectness/FelzenSegment )
-set(LIB_DIRS ${BING++_BINARY_DIR}/LibLinear ${BING++_SOURCE_DIR}/Lib /home/tolgab/opencv-3.0.0/lib)
+set(INC_DIRS ${BING++_SOURCE_DIR}/LibLinear ${BING++_SOURCE_DIR}/LibLinear/blas ${BING++_SOURCE_DIR}/../ext /usr/local/cuda/include ${OPENCV_PATH}include ${BING++_SOURCE_DIR}/Objectness/gSLIC_Lib ${BING++_SOURCE_DIR}/Objectness/FelzenSegment )
+set(LIB_DIRS ${BING++_BINARY_DIR}/LibLinear ${BING++_SOURCE_DIR}/../ext ${OPENCV_PATH}lib)
 
 add_subdirectory(ORUtils)
 
@@ -27,7 +27,7 @@ SOURCE_GROUP(engines FILES ${GSLIC_LIB})
 #OPENCV_DIR should be set as an environment variable in the shell if it is not
 #present in the standard directories
 
-message(STATUS ${LIB_DIRS})
+# message(STATUS ${LIB_DIRS})
 include_directories(${INC_DIRS})
 link_directories(${LIB_DIRS})
 
@@ -42,4 +42,4 @@ cuda_add_library(gSLIC_lib
 			${GSLIC_LIB})
 add_library(objectness ${SRC_FILES})
 cuda_add_executable(${PROJECT_NAME} ${SRC_FILES} kernel.cu)
-target_link_libraries(${PROJECT_NAME} opencv_highgui opencv_core opencv_imgproc opencv_ts opencv_imgcodecs liblinear blas gSLIC_lib ${CUDA_LIBRARY} /home/tolgab/vlfeat-0.9.20/bin/glnxa64/libvl.so)
+target_link_libraries(${PROJECT_NAME} opencv_highgui opencv_core opencv_imgproc opencv_ts opencv_imgcodecs liblinear blas gSLIC_lib ${CUDA_LIBRARY} vl)
